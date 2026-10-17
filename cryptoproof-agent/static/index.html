@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CryptoProof Agent · 专业文档智能校对</title>
+<style>
+:root{font-family:ui-sans-serif,system-ui,"PingFang SC","Microsoft YaHei",sans-serif;color:#182237;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}header{background:#0d1b30;color:#fff;padding:20px max(24px,calc((100vw - 1120px)/2))}header strong{font-size:21px}header p{margin:5px 0 0;color:#b6c5db;font-size:13px}main{max-width:1120px;margin:auto;padding:22px}.badge{padding:6px 10px;border-radius:30px;background:#e2edfe;color:#1a5599;font-size:12px;font-weight:600}.head{display:flex;justify-content:space-between;align-items:center;gap:12px}.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:18px}.panel{background:white;border:1px solid #e0e7ef;border-radius:16px;padding:19px;box-shadow:0 5px 20px #12203809}.panel h2{margin:0 0 12px;font-size:17px}.muted{color:#607188;font-size:13px;line-height:1.6}textarea{width:100%;min-height:228px;border:1px solid #ced8e5;border-radius:10px;font:14px/1.8 ui-monospace,"Microsoft YaHei",monospace;padding:12px;resize:vertical}button{border:none;padding:11px 17px;background:#1665d8;color:white;border-radius:9px;font-weight:600;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.secondary{color:#173754;background:#e9f0f8}.toolbar{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}.result{white-space:pre-wrap;word-break:break-word;min-height:100px;background:#f7f9fc;border:1px solid #e1e7ef;border-radius:10px;padding:12px;font:14px/1.8 ui-monospace,"Microsoft YaHei",monospace}.edit{border:1px solid #e4eaf1;background:#fcfdff;padding:12px;border-radius:10px;margin:9px 0}.edit label{display:flex;align-items:start;gap:10px}.edit input{margin-top:6px}.edit b{color:#ad3f44}.edit .replacement{color:#147d5c}.edit small{display:block;margin:6px 0 0 26px;color:#64748b;line-height:1.5}pre{white-space:pre-wrap;word-break:break-word;overflow:auto;font-size:12px;background:#17263c;color:#d5e7fb;border-radius:10px;padding:14px;max-height:250px}#message{font-size:13px;padding:10px 0;min-height:35px}.tip{background:#fff9e9;border:1px solid #f1dca5;padding:10px;border-radius:9px;font-size:13px;color:#865f20;line-height:1.6}hr{border:0;border-top:1px solid #ecf0f6;margin:16px 0}@media(max-width:830px){.grid{grid-template-columns:1fr}header{padding:18px}main{padding:15px}}
+</style>
+</head>
+<body>
+<header><strong>CryptoProof Agent</strong><p>LangGraph Tool Calling · 领域 RAG · 人工审核 · 修改溯源</p></header>
+<main>
+<div class="head"><div><h1 style="font-size:24px;margin:0 0 8px">密码领域文档智能校对</h1><p class="muted">智能体查询专业术语与规则，形成可解释的修改建议，经过人工确认后才生成修订稿。</p></div><span class="badge" id="mode">读取运行模式...</span></div>
+<div class="grid">
+<section class="panel"><h2>01 · 输入待校对内容</h2><textarea id="text">本系统采用数子签名技术校验文件完整性，并使用数字正书验证签名身份。
+为了实现非对称加蜜，系统还需要完善秘钥管理流程。</textarea><div class="toolbar"><button id="run">启动智能体校对</button><button id="example" class="secondary">载入示例</button></div><p class="muted">也可以上传 UTF-8 TXT、DOCX 或可提取文本的 PDF（≤3MB，≤20000 字）。</p><input type="file" id="file" accept=".txt,.docx,.pdf"><button class="secondary" id="upload">上传文件并校对</button><div id="message"></div><div class="tip">默认 demo 模式：仅演示工具调用和审核机制；启用 AGENT_MODE=llm 并配置支持 Function Calling 的模型后，才是大模型自主决策。请只用公开或授权的文本测试。</div></section>
+<section class="panel"><h2>02 · 修改建议 / 人工审核</h2><div id="status" class="muted">尚未开始</div><div id="edits"></div><div class="toolbar"><button id="approve" disabled>采纳勾选修改</button><button id="none" class="secondary" disabled>全部不采纳</button></div></section>
+<section class="panel"><h2>03 · 结果文档</h2><div class="result" id="output">请先提交校对任务。</div><div class="toolbar"><button id="download" disabled>下载校对 DOCX</button></div></section>
+<section class="panel"><h2>04 · Agent 工具执行轨迹</h2><p class="muted">展示模型/演示代理发起的 Tool Call 和 ToolNode 返回信息（非完整 LLM 内部推理）。</p><pre id="trace">尚未执行工具。</pre></section>
+</div>
+<p class="muted">学习级 MVP · 非生产审查系统 · 示例术语表为公开知识人工整理，不能代替权威密码标准校验 · 不应处理涉密数据。</p>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let task = null;
+const example = '本系统采用数子签名技术校验文件完整性，并使用数字正书验证签名身份。\n为了实现非对称加蜜，系统还需要完善秘钥管理流程。';
+$('example').onclick=()=>{$('text').value=example};
+function message(msg,isError=false){$('message').textContent=msg;$('message').style.color=isError?'#bb2435':'#246c59'}
+async function jsonResponse(resp){const v=await resp.json().catch(()=>({}));if(!resp.ok)throw Error(v.detail||`HTTP ${resp.status}`);return v}
+function render(v){task=v;const waiting=v.status==='awaiting_review';$('status').textContent=`任务：${v.task_id.slice(0,8)} · 状态：${waiting?'待人工审核':v.status} · 候选数：${v.edits.length}`;$('edits').replaceChildren();
+for (const e of v.edits){const d=document.createElement('div');d.className='edit';const label=document.createElement('label');const box=document.createElement('input');box.type='checkbox';box.className='editbox';box.value=e.id;box.checked=e.risk==='low';box.disabled=!waiting;const span=document.createElement('span');const wrong=document.createElement('b');wrong.textContent=e.original;const arrow=document.createTextNode(' → ');const good=document.createElement('b');good.className='replacement';good.textContent=e.replacement;span.append(wrong,arrow,good);label.append(box,span);const info=document.createElement('small');info.textContent=`${e.reason} · ${e.source} · 位置 [${e.start}, ${e.end}) · ${e.origin==='llm_unverified'?'LLM 未核实建议':'术语规则候选'}`;d.append(label,info);$('edits').append(d)}
+if(!v.edits.length){const d=document.createElement('p');d.className='muted';d.textContent='没有找到可确认的修改建议';$('edits').append(d)}
+$('approve').disabled=!waiting;$('none').disabled=!waiting;$('download').disabled=v.status!=='completed';$('output').textContent=v.corrected_text ?? '审核完成后显示最终校对文本';$('trace').textContent=JSON.stringify(v.trace,null,2);message(waiting?'发现修改建议，请选择后确认':v.status==='completed'?'校对已完成':'任务已执行')}
+async function sendText(){try{$('run').disabled=true;message('智能体执行中...');const r=await fetch('/api/tasks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:$('text').value})});render(await jsonResponse(r))}catch(e){message(e.message,true)}finally{$('run').disabled=false}}
+$('run').onclick=sendText;
+$('upload').onclick=async()=>{const f=$('file').files[0];if(!f){message('请先选择文件',true);return}try{message('解析并校对文件中...');const data=new FormData();data.append('file',f);render(await jsonResponse(await fetch('/api/tasks/upload',{method:'POST',body:data})))}catch(e){message(e.message,true)}};
+async function resume(ids){if(!task)return;try{message('正在恢复 LangGraph 审核节点...');render(await jsonResponse(await fetch(`/api/tasks/${task.task_id}/approve`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({approved_ids:ids})})))}catch(e){message(e.message,true)}}
+$('approve').onclick=()=>resume([...document.querySelectorAll('.editbox:checked')].map(x=>x.value));$('none').onclick=()=>resume([]);
+$('download').onclick=()=>{if(task)location.href=`/api/tasks/${task.task_id}/download.docx`};
+fetch('/api/health').then(jsonResponse).then(v=>{$('mode').textContent=`${v.mode==='llm'?'真实 LLM Agent':'离线演示'} · ${v.rag_mode}`}).catch(()=>{$('mode').textContent='服务不可用'});
+</script>
+</body></html>
