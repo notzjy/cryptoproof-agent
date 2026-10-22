@@ -1,0 +1,44 @@
+[
+  {
+    "id": "term-digital-signature", "term": "数字签名",
+    "definition": "以密码技术实现的数据签署机制，可辅助验证签名者身份及数据完整性。",
+    "incorrect_variants": ["数子签名", "数字签明", "数字签民"],
+    "source": "演示公开术语表/数字签名"
+  },
+  {
+    "id": "term-digital-certificate", "term": "数字证书",
+    "definition": "一种包含主体公钥及相关身份信息的电子数据结构，通常由证书颁发机构签发。",
+    "incorrect_variants": ["数字正书", "数子证书", "数字征书"],
+    "source": "演示公开术语表/数字证书"
+  },
+  {
+    "id": "term-asymmetric", "term": "非对称加密",
+    "definition": "使用相关联的公钥与私钥进行密码操作的密码体制中的加密方法。",
+    "incorrect_variants": ["非对称加蜜", "非对称加迷"],
+    "source": "演示公开术语表/非对称加密"
+  },
+  {
+    "id": "term-hash", "term": "哈希函数",
+    "definition": "将任意长度输入映射为固定长度或限定长度摘要的函数。密码学中关注抗碰撞等安全性质。",
+    "incorrect_variants": ["哈西函数", "哈希函授"],
+    "source": "演示公开术语表/哈希函数"
+  },
+  {
+    "id": "term-key-management", "term": "密钥管理",
+    "definition": "密码密钥的生成、分发、存储、轮换、撤销与销毁等生命周期管理过程。",
+    "incorrect_variants": ["秘钥管理", "密钥管里"],
+    "source": "演示公开术语表/密钥管理"
+  },
+  {
+    "id": "term-certificate-authority", "term": "证书颁发机构",
+    "definition": "负责签发和管理数字证书的可信实体，通常缩写为 CA。",
+    "incorrect_variants": ["证书办法机构"],
+    "source": "演示公开术语表/证书颁发机构"
+  },
+  {
+    "id": "term-symmetric", "term": "对称加密",
+    "definition": "加密和解密使用相同密钥，或可从一方密钥计算得到另一方密钥的密码方法。",
+    "incorrect_variants": ["对称加蜜"],
+    "source": "演示公开术语表/对称加密"
+  }
+]

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#123e3b">
+  <title>术语校对工作台 · CryptoProof</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%23123e3b'/%3E%3Cpath d='M11 12h18M11 20h11m-11 8h7m5-2 4 4 7-9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/app.css?v=2"><script src="/static/app.js?v=3" defer></script>
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8m-8 4h5"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-7-2-10-1v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1zm0 0v15"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h4"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3z"/></symbol>
+</defs></svg>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="/" aria-label="CryptoProof 首页"><span class="brand-mark"><svg class="icon"><use href="#i-doc"/></svg></span><span>CryptoProof<span class="brand-sub">专业文本校对</span></span></a>
+  <nav aria-label="主导航"><a class="nav-current" href="#workspace">文本校对</a><a href="/generate">文档生成</a><a href="#library-panel">术语库管理</a></nav>
+  <span class="service-status" id="mode"><span class="status-dot"></span><span id="mode-text">连接服务中</span></span>
+</div></header>
+<main id="workspace">
+  <section class="intro" aria-labelledby="page-title"><div><div class="eyebrow"><span></span>MULTI-DOMAIN PROOFREADING</div><h1 id="page-title">让专业表达，更准确<span class="title-dot">。</span></h1><p>从日常文字到专业术语，选择你的领域，让每一次修改都有依据。</p></div><div class="workflow" aria-label="校对流程"><span class="current"><b>1</b>输入原文</span><i></i><span><b>2</b>审核建议</span><i></i><span><b>3</b>导出文档</span></div></section>
+  <div class="workspace-grid">
+    <section class="panel input-panel" aria-labelledby="input-heading">
+      <div class="panel-heading"><div class="heading-title"><span class="step">01</span><h2 id="input-heading">原文输入</h2></div><button class="text-button" id="example" type="button">载入示例 ↗</button></div>
+      <label class="sr-only" for="text">待校对文本</label><textarea id="text" maxlength="20000" placeholder="在这里粘贴需要校对的文字，或上传文档…">本系统采用数子签名技术校验文件完整性，并使用数字正书验证签名身份。
+为了实现非对称加蜜，系统还需要完善秘钥管理流程。</textarea>
+      <div class="input-meta"><span class="selected-library-label"><svg class="icon small"><use href="#i-book"/></svg><span id="input-library">正在读取术语库</span></span><span><span id="char-count">0</span> / 20,000 字</span></div>
+      <div class="input-actions"><button class="button primary" id="run" type="button"><svg class="icon"><use href="#i-spark"/></svg><span id="run-label">开始智能校对</span><svg class="icon arrow-icon"><use href="#i-arrow"/></svg></button><label class="button secondary file-button" for="file"><svg class="icon"><use href="#i-upload"/></svg>选择文档<input class="file-overlay" type="file" id="file" accept=".txt,.docx,.pdf" aria-label="选择待校对文档"></label><button class="button compact secondary" id="upload" type="button" disabled>上传校对</button></div>
+      <div class="file-caption" id="document-caption">支持 TXT、DOCX、文字型 PDF · 文件不超过 3MB</div><div class="notice" id="mode-tip"><span class="notice-dot"></span><span>普通文字由模型校对，疑似专业术语按需查询所选术语库。</span></div>
+    </section>
+    <section class="panel review-panel" aria-labelledby="review-heading">
+      <div class="panel-heading"><div class="heading-title"><span class="step">02</span><h2 id="review-heading">修改建议</h2></div><span class="count-badge" id="edit-count">待检查</span></div>
+      <div class="review-content"><div id="review-empty" class="empty-state"><span class="empty-icon"><svg class="icon"><use href="#i-check"/></svg></span><h3>每一处修改，由你决定</h3><p>提交文本后，在这里查看修改原因<br>逐条确认，让专业表达保持原意。</p><div class="empty-lines" aria-hidden="true"><span></span><span></span><span></span></div></div><div id="review-details" hidden><div class="task-meta" id="status"></div><p id="summary" class="summary"></p><div id="edits"></div></div></div>
+      <div class="review-actions"><button class="button primary" id="approve" type="button" disabled><svg class="icon"><use href="#i-check"/></svg>采纳勾选修改</button><button class="button secondary" id="none" type="button" disabled>全部不采纳</button><span class="review-note">确认后生成修订稿</span></div>
+    </section>
+    <section class="panel output-panel" aria-labelledby="output-heading">
+      <div class="panel-heading"><div class="heading-title"><span class="step">03</span><h2 id="output-heading">校对结果</h2></div><span class="subtle-label" id="result-label">等待审核完成</span></div>
+      <div class="result-placeholder" id="output-placeholder"><svg class="icon"><use href="#i-doc"/></svg><p>确认修改后，完整修订稿将呈现在这里。</p><span>保留原文含义，记录每一处变更。</span></div><div class="result-text" id="output" hidden></div>
+      <div class="output-actions"><button class="button secondary" id="copy" type="button" disabled><svg class="icon"><use href="#i-copy"/></svg>复制文本</button><button class="button primary" id="download" type="button" disabled><svg class="icon"><use href="#i-download"/></svg>下载 Word 文档</button></div>
+    </section>
+    <section class="panel library-panel" id="library-panel" aria-labelledby="library-heading">
+      <div class="panel-heading"><div class="heading-title"><span class="step library-step"><svg class="icon small"><use href="#i-book"/></svg></span><h2 id="library-heading">领域术语库</h2></div><button class="text-button" id="add-library" type="button"><svg class="icon small"><use href="#i-plus"/></svg>添加术语库</button></div>
+      <p class="library-description">切换专业领域，为下一次校对选择合适的参考。</p><label class="field-label" for="library-select">本次校对使用</label><div class="select-wrap"><svg class="icon"><use href="#i-book"/></svg><select id="library-select" disabled><option>正在加载术语库…</option></select><span class="select-chevron" aria-hidden="true">⌄</span></div>
+      <div class="library-stats"><div><span class="stats-label">收录术语</span><strong id="term-count">—</strong><span class="stats-unit">条</span></div><span class="domain-badge" id="library-domain">等待选择</span></div><div class="term-preview" id="term-preview" aria-label="术语示例"></div>
+      <div class="library-footer"><span id="library-caption">支持密码、通信、网安等自定义领域</span><button class="text-button danger" id="delete-library" type="button" disabled><svg class="icon small"><use href="#i-trash"/></svg>删除此库</button></div>
+    </section>
+  </div>
+  <div class="feedback" id="message" role="status" aria-live="polite" hidden></div><footer class="page-footer"><span>CryptoProof · 让文字准确，让专业有据</span><span>模型建议需人工审核 · 请仅使用公开或授权的文本</span></footer>
+</main>
+<dialog id="add-dialog" aria-labelledby="add-title"><form id="library-form"><div class="dialog-heading"><div><div class="eyebrow">YOUR KNOWLEDGE, YOUR DOMAIN</div><h2 id="add-title">添加术语库</h2></div><button class="close-button" type="button" data-close="add-dialog" aria-label="关闭添加窗口">×</button></div><p class="dialog-intro">上传正确术语列表，为一个新的专业领域建立参考。</p><label class="field-label" for="library-name">术语库名称 <span class="required">*</span></label><input id="library-name" name="name" maxlength="60" required placeholder="例如：通信术语库"><label class="field-label" for="library-domain-input">所属领域 <span class="optional">选填</span></label><input id="library-domain-input" name="domain" maxlength="60" placeholder="例如：通信技术、网络安全"><label class="term-file-zone" for="library-file"><svg class="icon"><use href="#i-upload"/></svg><strong id="library-file-label">选择术语 TXT 文件</strong><span>UTF-8 编码 · 每行一个正确术语 · 最大 1MB</span><input id="library-file" type="file" name="file" accept=".txt,text/plain" required class="file-overlay" aria-label="上传术语库 TXT 文件"></label><p class="form-hint">空行和重复术语会自动去除，无需列出术语的错误写法。</p><p class="form-error" id="library-error" role="alert" hidden></p><div class="dialog-actions"><button class="button secondary" type="button" data-close="add-dialog">取消</button><button class="button primary" id="save-library" type="submit">添加并使用<svg class="icon"><use href="#i-arrow"/></svg></button></div></form></dialog>
+<dialog id="delete-dialog" aria-labelledby="delete-title"><div class="dialog-heading"><h2 id="delete-title">删除术语库？</h2><button class="close-button" type="button" data-close="delete-dialog" aria-label="关闭删除窗口">×</button></div><p class="dialog-intro" id="delete-description"></p><p class="form-hint">已提交任务保留原术语库快照，不受影响。需要再次使用时，可重新上传 TXT。</p><p class="form-error" id="delete-error" role="alert" hidden></p><div class="dialog-actions"><button class="button secondary" type="button" data-close="delete-dialog">保留术语库</button><button class="button destructive" id="confirm-delete" type="button">确认删除</button></div></dialog>
+</body>
+</html>

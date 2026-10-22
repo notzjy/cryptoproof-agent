@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183c3a">
+  <title>文档生成工作台 · CryptoProof</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='11' fill='%23183c3a'/%3E%3Cpath d='M11 12h18M11 20h11m-11 8h7m5-2 4 4 7-9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/generate.css?v=1">
+  <script src="/static/generate.js?v=1" defer></script>
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="g-doc" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8m-8 4h5"/></symbol>
+  <symbol id="g-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-7-2-10-1v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1zm0 0v15"/></symbol>
+  <symbol id="g-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="g-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+  <symbol id="g-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="g-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h4"/></symbol>
+  <symbol id="g-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+  <symbol id="g-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="g-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3z"/></symbol>
+  <symbol id="g-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="g-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-5 5 6"/></symbol>
+  <symbol id="g-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="g-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="g-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+</defs></svg>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="/" aria-label="CryptoProof 首页"><span class="brand-mark"><svg class="icon"><use href="#g-doc"/></svg></span><span>CryptoProof<span class="brand-sub">专业文本工作台</span></span></a>
+  <nav aria-label="主导航"><a href="/">文本校对</a><a class="nav-current" aria-current="page" href="/generate">文档生成</a></nav>
+  <span class="header-label"><span></span>从实验素材，到专业表达</span>
+</div></header>
+<main>
+  <section class="intro" aria-labelledby="page-title"><div><div class="eyebrow"><span></span>REFERENCE-GUIDED WRITING</div><h1 id="page-title">让实验结果，成为好文档<span>。</span></h1><p>提供你的实验事实，选择参考资料；借鉴分析与行文方式，写出属于这次实验的内容。</p></div><div class="intro-note"><svg class="icon"><use href="#g-book"/></svg><div><strong>独立参考资料库</strong><span>保存写作范例，与校对术语库分开管理</span></div></div></section>
+  <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+  <div class="compose-grid">
+    <section class="panel material-panel" aria-labelledby="material-heading">
+      <div class="panel-heading"><div class="heading-title"><span class="step">01</span><h2 id="material-heading">本次实验素材</h2></div><span class="small-label">事实与数据来源</span></div>
+      <label class="field-label" for="document-title">文档标题 <span class="optional">选填</span></label>
+      <input id="document-title" class="text-input" type="text" maxlength="160" placeholder="例如：面向 SM4 神经网络实现的攻击实验分析">
+      <div class="label-row"><label class="field-label" for="experiment-text">实验结果与案例</label><span class="counter"><span id="experiment-count">0</span> 字</span></div>
+      <textarea id="experiment-text" class="experiment-input" maxlength="60000" placeholder="粘贴实验过程、结果、成功案例或补充说明。&#10;&#10;可以写清：研究对象、实验条件、攻击步骤、关键数据与结论。表格、图片也可以通过下方附件提供。"></textarea>
+      <div id="asset-list" class="asset-list" aria-label="已上传实验附件"></div>
+      <label class="attachment-zone" for="asset-file" id="asset-dropzone"><span class="upload-symbol"><svg class="icon"><use href="#g-upload"/></svg></span><span class="upload-copy"><strong id="asset-upload-label">添加实验附件，或拖放至此</strong><span>文档 · 表格 · 图片，每个不超过 20 MB</span></span><span class="upload-plus" aria-hidden="true">+</span><input class="file-overlay" type="file" id="asset-file" multiple accept=".txt,.md,.docx,.pdf,.csv,.xlsx,.png,.jpg,.jpeg,.webp" aria-label="上传实验附件，最多 8 个"></label>
+      <p class="file-hint">支持 TXT、Markdown、Word、PDF、CSV、Excel、PNG、JPG、WebP · 最多 8 个附件</p>
+      <div class="material-footer"><span class="footnote-dot"></span><p>正文以本次实验素材为依据；参考资料用于借鉴写法，不作为你的实验结果。</p></div>
+    </section>
+    <div class="side-stack">
+      <section class="panel reference-panel" aria-labelledby="reference-heading">
+        <div class="panel-heading"><div class="heading-title"><span class="step library-step">02</span><h2 id="reference-heading">选择参考资料</h2></div><button id="open-add" class="text-button" type="button"><svg class="icon small"><use href="#g-plus"/></svg>添加资料</button></div>
+        <div class="reference-intro"><p>选择分析文档、论文或报告，参考其结构与表达。</p><span class="selection-count" id="selection-count">0 / 6</span></div>
+        <div id="reference-list" class="reference-list" aria-label="写作参考资料"><div class="library-empty">正在读取参考资料…</div></div>
+        <div class="reference-footer"><svg class="icon small"><use href="#g-book"/></svg><span>一次最多选择 6 份，可预览、添加或删除</span></div>
+      </section>
+      <section class="panel settings-panel" aria-labelledby="settings-heading">
+        <div class="panel-heading"><div class="heading-title"><span class="step">03</span><h2 id="settings-heading">定义这次写作</h2></div><span class="small-label">按你的要求展开</span></div>
+        <div class="word-control"><label class="field-label" for="target-words">目标字数</label><div class="word-input-wrap"><input id="target-words" type="number" inputmode="numeric" min="300" max="6000" step="100" value="1500"><span>字</span></div></div>
+        <div class="word-presets" aria-label="目标字数快捷选择"><button type="button" data-words="800">800 字 · 简述</button><button type="button" class="active" data-words="1500">1,500 字 · 分析</button><button type="button" data-words="3000">3,000 字 · 详述</button></div><p class="word-hint">300–6,000 字，允许 ±15%；按正文非空白字符统计，包含标点。</p>
+        <label class="field-label" for="writing-instructions">写作要求 <span class="optional">选填</span></label><textarea id="writing-instructions" class="instructions-input" maxlength="3000" placeholder="例如：使用论文实验分析的语气，先介绍攻击方法，再比较结果；重点解释成功原因。"></textarea>
+        <div class="generate-action"><button id="generate" class="button primary" type="button"><svg class="icon"><use href="#g-spark"/></svg><span id="generate-label">生成文档</span><svg class="icon"><use href="#g-arrow"/></svg></button><span id="generate-hint">选择资料并提供实验素材即可开始</span></div>
+      </section>
+    </div>
+  </div>
+  <section class="panel output-panel" id="output-panel" aria-labelledby="output-heading">
+    <div class="output-header"><div class="heading-title"><span class="result-symbol"><svg class="icon"><use href="#g-doc"/></svg></span><div><h2 id="output-heading">生成结果</h2><p id="output-caption">一篇有依据、有结构的实验分析，从这里开始。</p></div></div><div class="output-tools"><button id="copy-result" class="button secondary" type="button" disabled><svg class="icon"><use href="#g-copy"/></svg>复制正文</button><button id="download-result" class="button primary" type="button" disabled><svg class="icon"><use href="#g-download"/></svg>下载 Word</button></div></div>
+    <div class="history-row"><span><svg class="icon small"><use href="#g-clock"/></svg>最近生成</span><select id="history-select" aria-label="恢复最近生成的文档"><option value="">暂无生成记录</option></select><button class="text-button" id="refresh-history" type="button">刷新</button></div>
+    <div id="result-empty" class="result-empty"><div class="paper-illustration" aria-hidden="true"><svg class="icon"><use href="#g-doc"/></svg><i></i><i></i><i></i><span><svg class="icon"><use href="#g-spark"/></svg></span></div><h3>素材就绪，思路成文</h3><p>把实验结果交给模型，参考你选中的资料组织分析。<br>生成后可以在这里阅读全文，并导出 Word 文档。</p><div class="empty-tags"><span>依据实验事实</span><span>参考行文方式</span><span>控制篇幅</span></div></div>
+    <div id="generation-progress" class="generation-progress" role="status" aria-live="polite" hidden><div class="progress-top"><span class="working-indicator"></span><strong id="progress-title">正在准备生成</strong><span id="progress-elapsed"></span></div><p id="progress-message">正在整理实验素材和参考资料。</p><ol class="progress-steps"><li data-stage="analyzing"><span>1</span>分析素材</li><li data-stage="writing"><span>2</span>组织成文</li><li data-stage="revising"><span>3</span>复核篇幅</li></ol><p class="progress-note">生成在后台继续，可稍后从“最近生成”恢复。</p></div>
+    <article id="result-document" class="result-document" hidden><div class="document-meta"><span id="result-date"></span><span id="result-word-count"></span></div><h3 id="result-title"></h3><div id="result-body" class="result-body"></div></article>
+    <div id="generation-notes" class="generation-notes" hidden><div class="notes-heading"><span class="note-mark">i</span><strong>需要核实与补充</strong></div><ul id="generation-warning-list"></ul></div>
+    <details id="fact-details" class="fact-details" hidden><summary>查看本次实验事实摘要</summary><div id="fact-summary"></div></details>
+    <details id="source-details" class="source-details" hidden><summary>本次使用的素材与参考资料</summary><div id="source-list"></div></details>
+    <div id="result-error" class="result-error" role="alert" hidden><strong>这次生成未完成</strong><p id="result-error-text"></p><button class="button secondary" id="retry-generation" type="button">使用当前素材重新生成</button></div>
+  </section>
+  <footer class="page-footer"><span>CryptoProof · 让文字准确，让专业有据</span><span>生成内容请核对实验事实与专业结论后使用</span></footer>
+</main>
+<dialog id="add-reference-dialog" aria-labelledby="add-reference-title"><form id="reference-form"><div class="dialog-heading"><div><div class="eyebrow">BUILD YOUR REFERENCE LIBRARY</div><h2 id="add-reference-title">添加参考资料</h2></div><button class="close-button" type="button" data-close="add-reference-dialog" aria-label="关闭添加资料窗口">×</button></div><p class="dialog-intro">保存值得借鉴的论文、分析文档或报告，写作时再选择使用。</p><label class="field-label" for="reference-title">资料名称 <span class="optional">选填，默认使用文件名</span></label><input id="reference-title" class="text-input" type="text" maxlength="180" placeholder="例如：SM4 攻击实验论文范例"><label class="reference-upload" for="reference-file"><svg class="icon"><use href="#g-upload"/></svg><strong id="reference-file-label">选择参考文档</strong><span>TXT、Markdown、Word、文字型 PDF · 最大 20 MB</span><input type="file" id="reference-file" class="file-overlay" accept=".txt,.md,.docx,.pdf" required aria-label="上传参考文档"></label><p class="form-hint">这份资料保存到独立的写作资料库，不会加入校对术语库。</p><p id="reference-form-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button class="button secondary" type="button" data-close="add-reference-dialog">取消</button><button id="save-reference" class="button primary" type="submit">添加并选用<svg class="icon"><use href="#g-arrow"/></svg></button></div></form></dialog>
+<dialog id="delete-reference-dialog" aria-labelledby="delete-reference-title"><div class="dialog-heading"><h2 id="delete-reference-title">删除这份资料？</h2><button class="close-button" type="button" data-close="delete-reference-dialog" aria-label="关闭删除窗口">×</button></div><p id="delete-reference-description" class="dialog-intro"></p><p class="form-hint">删除后将无法在新的写作中选择；已经生成的文档仍可查看和下载。</p><p id="delete-reference-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" class="button secondary" data-close="delete-reference-dialog">保留资料</button><button id="confirm-delete-reference" type="button" class="button destructive">确认删除</button></div></dialog>
+<dialog id="preview-reference-dialog" class="preview-dialog" aria-labelledby="preview-reference-title"><div class="dialog-heading"><h2 id="preview-reference-title">资料预览</h2><button type="button" class="close-button" data-close="preview-reference-dialog" aria-label="关闭资料预览">×</button></div><p id="preview-reference-meta" class="dialog-intro"></p><div id="preview-reference-body" class="preview-text"></div></dialog>
+</body>
+</html>
